@@ -24,8 +24,8 @@ namespace Demo3
         static void Main(string[] args)
         {
             SerializeWeakEmployee();
-            SerializeStrongEmployee();
-            SerializeJsonStrongEmployee();
+            //SerializeStrongEmployee();
+            //SerializeJsonStrongEmployee();
         }
 
         static void SerializeWeakEmployee()

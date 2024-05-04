@@ -36,7 +36,8 @@ namespace ExampleSourceGenerator
             foreach (var entry in syntaxReceiver.Entries)
             {
                 string source = GenerateCode(entry);
-                context.AddSource($"StrongType_{entry.NamespaceIdentifier}_{entry.TypeIdentifier}.g.cs", source);
+                string filename = $"StrongType_{entry.NamespaceIdentifier}_{entry.TypeIdentifier}.g.cs";
+                context.AddSource(filename, source);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using ManualStrongTypes.Example1Simple;
+﻿using Demo1.Strong;
+using ManualStrongTypes.Example1Simple;
 
 namespace Scratch
 {
@@ -25,11 +26,11 @@ namespace Scratch
                 PhoneNumber phoneNumber = "123-456-7890"!;
                 EmailAddress emailAddress = "me@gmail.com"!;
 
-                //emailAddress = phoneNumber;
+                //emailAddress = phoneNumber; // compile error
 
                 Strong.Employee employee1 = new(employeeId, personName, emailAddress, phoneNumber);
-                //Strong.Employee employee2 = new(customerId, emailAddress, personName, phoneNumber);
-                //Weak.Employee employee3 = new(customerId, emailAddress, personName, phoneNumber);
+                //Strong.Employee employee2 = new(customerId, emailAddress, personName, phoneNumber); // compile error
+                //Weak.Employee employee3 = new(customerId, emailAddress, personName, phoneNumber); // missed by compiler 
 
                 Console.WriteLine(employee1);
             }
@@ -38,6 +39,9 @@ namespace Scratch
                 Console.Error.WriteLine(ex.Message);
             }
         }
+
+        Demo1.Weak.ICustomerService? weakCcustomerService; // example interface
+        Demo1.Strong.ICustomerService? strongCustomerService; // example interface
 
     }
 }

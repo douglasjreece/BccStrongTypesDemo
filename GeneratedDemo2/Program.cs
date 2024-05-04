@@ -15,6 +15,7 @@ namespace GeneratedDemo2
                 //PhoneNumber bad = "123-456-78900"!;
                 //Console.WriteLine(bad);
 
+                // Parameter passing
                 //Traditional.WritePhoneNumber("123-456-78900"!);
                 //Strong.WritePhoneNumber("123-456-78900"!);
             }

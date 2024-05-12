@@ -53,12 +53,12 @@ namespace ManualStrongTypes.Example3Json
         {
             public override CustomerId Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
-                return new(int.Parse(reader.GetString()!));
+                return new(reader.GetInt32());
             }
 
             public override void Write(Utf8JsonWriter writer, CustomerId value, JsonSerializerOptions options)
             {
-                writer.WriteStringValue(value.Value.ToString());
+                writer.WriteNumberValue(value.Value);
             }
         }
     }

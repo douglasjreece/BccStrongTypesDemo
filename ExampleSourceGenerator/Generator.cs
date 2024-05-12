@@ -63,10 +63,12 @@ namespace ExampleSourceGenerator
             }
 
             public List<Entry> Entries = new();
+            
+            private string namespaceIdentifier; // to track the current namespace
 
             public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
             {
-                if (context.Node is NamespaceDeclarationSyntax namespaceDecl)
+                if (context.Node is NamespaceDeclarationSyntax namespaceDecl) // node is namespace
                 {
                     namespaceIdentifier = namespaceDecl.Name.ToString();
                 }
@@ -76,19 +78,20 @@ namespace ExampleSourceGenerator
                     string typeIdentifier = string.Empty;
                     SyntaxList<AttributeListSyntax>? list = null;
 
-                    if (context.Node is StructDeclarationSyntax structdecl)
+                    if (context.Node is StructDeclarationSyntax structdecl) // node is struct
                     {
                         type = NodeType.Struct;
                         typeIdentifier = structdecl.Identifier.Text;
                         list = structdecl.AttributeLists;
                     }
-                    else if (context.Node is ClassDeclarationSyntax classdecl)
+                    else if (context.Node is ClassDeclarationSyntax classdecl) // node is class
                     {
                         type = NodeType.Class;
                         typeIdentifier = classdecl.Identifier.Text;
                         list = classdecl.AttributeLists;
                     }
 
+                    // Check for ToJson attribute
                     if (type != NodeType.Neither)
                     {
                         var hasAttribute = 
@@ -102,9 +105,6 @@ namespace ExampleSourceGenerator
                     }
                 }
             }
-
-            readonly string jsonAttributeName = typeof(ToJsonAttribute).FullName;
-            private string namespaceIdentifier;
         }
     }
 }
